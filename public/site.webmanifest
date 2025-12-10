@@ -1,0 +1,16 @@
+{
+  "name": "Ilmul Quran Academy",
+  "short_name": "Ilmul Quran",
+  "description": "Learn Quran online with qualified teachers",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2a6e3f",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

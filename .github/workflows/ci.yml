@@ -1,0 +1,72 @@
+﻿name: Next.js CI/CD with Prismic
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  repository_dispatch:
+    types: [prismic-update]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'  # ⚠️ MUST BE 20 or higher for Next.js 16
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        echo 'Installing dependencies...'
+        npm ci --no-audit --prefer-offline
+        
+    - name: Build Next.js project
+      run: |
+        echo 'Building Next.js project...'
+        npm run build
+        
+    - name: Prepare static export
+      run: |
+        echo 'Preparing static files...'
+        # Create out directory
+        mkdir -p out
+        
+        # Copy HTML files if they exist
+        if [ -d ".next/server/app" ]; then
+          echo 'Copying HTML files...'
+          find .next/server/app -name "*.html" -exec cp {} out/ \;
+        fi
+        
+        # Copy static assets
+        if [ -d ".next/static" ]; then
+          cp -r .next/static out/ 2>/dev/null || true
+        fi
+        
+        # Copy public files
+        if [ -d "public" ]; then
+          cp -r public/* out/ 2>/dev/null || true
+        fi
+        
+        # Clean up .next folder from out/
+        rm -rf out/.next 2>/dev/null || true
+        
+        echo 'Files ready for deployment:'
+        ls -la out/*.html 2>/dev/null | head -5 || echo 'No HTML files found'
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'

@@ -1,0 +1,7 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/courses/get-data/route": "app/api/courses/get-data/route.js",
+  "/blog/page": "app/blog/page.js",
+  "/blog/category/[slug]/page": "app/blog/category/[slug]/page.js",
+  "/blog/[slug]/page": "app/blog/[slug]/page.js"
+}

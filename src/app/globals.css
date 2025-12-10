@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* src/styles/globals.css */
+
+/* Custom Pill-Shaped Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px;  /* Scrollbar width */
+    height: 12px; /* Optional: for horizontal scrollbar */
+    border-radius: 12px;
+  }
+
+  
+  /* Custom Styles for Content (for tags rendered through dangerouslySetInnerHTML) */
+
+/* Styling paragraphs within content */
+.content p {
+  color: #4a5568;  /* Dark gray text color */
+  font-size: 1.125rem;  /* Font size */
+  line-height: 1.8;  /* Line height for better readability */
+  margin-bottom: 1rem;  /* Margin between paragraphs */
+}
+
+/* Styling headings within content */
+.content h1,
+.content h2,
+.content h3 {
+  color: #2d3748;  /* Darker text color */
+  font-weight: bold;  /* Bold headings */
+  margin-top: 2rem;  /* Margin at the top of the headings */
+  margin-bottom: 1rem;  /* Margin at the bottom of the headings */
+}
+.content strong{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.content hr{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.content h1 {
+  font-size: 2rem;  /* Size for h1 */
+}
+
+.content h2 {
+  font-size: 1.5rem;  /* Size for h2 */
+}
+
+.content h3 {
+  font-size: 1.25rem;  /* Size for h3 */
+}
+
+/* Styling images within content */
+.content img {
+  max-width: 100%;  /* Make images responsive */
+  height: auto;  /* Maintain aspect ratio */
+  border-radius: 0.375rem;  /* Optional: rounded corners */
+  margin-bottom: 1.5rem;  /* Space below the image */
+}
+
+/* Optional: Add styling for links inside the content */
+.content a {
+  color: #3182ce;  /* Link color */
+  text-decoration: underline;  /* Underlined text */
+}
+
+.content a:hover {
+  color: #2b6cb0;  /* Darker link color on hover */
+  text-decoration: none;  /* Remove underline on hover */
+}
+
+/* Optional: Add custom style for lists */
+.content ul,
+.content ol {
+  padding-left: 1.5rem;  /* Indentation for lists */
+  margin-bottom: 1rem;  /* Space below the list */
+}
+
+.content li {
+  margin-bottom: 0.5rem;  /* Space between list items */
+}
+/* Add these styles to your global CSS or component CSS */
+.testimonial-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #e2e8f0;
+  opacity: 1;
+}
+
+.testimonial-swiper .swiper-pagination-bullet-active {
+  background: #14b8a6 !important;
+  width: 24px;
+  border-radius: 5px;
+}
+
+.testimonial-swiper .swiper-pagination {
+  bottom: 0;
+}
+.blog-page {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .blog-page {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.blog-content {
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  Background : #e6e7e8ae;
+}
+.blog-sidebar {
+  padding: 20px;
+  border-radius: 10px;
+
+  height: fit-content;
+}
+/* Make the form movable only in blog pages */
+.non-sticky-form .sticky {
+  position: static !important;
+  top: auto !important;
+}

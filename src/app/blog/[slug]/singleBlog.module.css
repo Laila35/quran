@@ -1,0 +1,27 @@
+.blog-page {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .blog-page {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.blog-content {
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  Background : #e6e7e8ae;
+}
+.blog-sidebar {
+  padding: 20px;
+  border-radius: 10px;
+
+  height: fit-content;
+}
+/* Make the form movable only in blog pages */
+.non-sticky-form .sticky {
+  position: static !important;
+  top: auto !important;
+}
