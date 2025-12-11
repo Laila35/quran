@@ -24,9 +24,9 @@ logs/
 /coverage/
 
 # Environment files (sensitive)
-.env
-.env.local
-.env.*.local
+# .env
+# .env.local
+# .env.*.local
 
 # Vercel
 .vercel/

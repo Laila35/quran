@@ -134,6 +134,7 @@ export function getPostExcerpt(post, maxLength = 160) {
   const firstParagraph = post.data.content.find(
     (item) => item.type === "paragraph" && item.text
   );
+  
 
   if (!firstParagraph?.text) return "";
 
