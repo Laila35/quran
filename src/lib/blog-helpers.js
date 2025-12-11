@@ -15,12 +15,16 @@ export async function getAllBlogData() {
           field: "document.first_publication_date",
           direction: "desc",
         },
+        // ADDED: Tags for webhook revalidation
+        fetchOptions: { next: { tags: ["prismic"] } }
       }),
       client.getAllByType("blog_post", {
         orderings: {
           field: "document.first_publication_date",
           direction: "desc",
         },
+        // ADDED: Tags for webhook revalidation
+        fetchOptions: { next: { tags: ["prismic"] } }
       }),
     ]);
 
@@ -46,6 +50,8 @@ export async function getPostsByCategory(slug) {
           field: "document.first_publication_date",
           direction: "desc",
         },
+        // ADDED: Tags for webhook revalidation
+        fetchOptions: { next: { tags: ["prismic"] } }
       });
 
       return {
@@ -56,7 +62,10 @@ export async function getPostsByCategory(slug) {
     }
 
     // Fetch specific category
-    const category = await client.getByUID("category", slug);
+    const category = await client.getByUID("category", slug, {
+      // ADDED: Tags for webhook revalidation
+      fetchOptions: { next: { tags: ["prismic"] } }
+    });
 
     const posts = await client.getAllByType("blog_post", {
       filters: [prismic.filter.at("my.blog_post.category", category.id)],
@@ -64,6 +73,8 @@ export async function getPostsByCategory(slug) {
         field: "document.first_publication_date",
         direction: "desc",
       },
+      // ADDED: Tags for webhook revalidation
+      fetchOptions: { next: { tags: ["prismic"] } }
     });
 
     return { category, posts, isAll: false };
@@ -79,7 +90,10 @@ export async function getPostsByCategory(slug) {
 export async function getPostBySlug(slug) {
   try {
     const client = createClient();
-    const post = await client.getByUID("blog_post", slug);
+    const post = await client.getByUID("blog_post", slug, {
+      // ADDED: Tags for webhook revalidation
+      fetchOptions: { next: { tags: ["prismic"] } }
+    });
     return post;
   } catch (error) {
     console.error(`Error fetching post ${slug}:`, error);
